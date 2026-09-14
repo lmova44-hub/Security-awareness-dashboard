@@ -1,29 +1,22 @@
 from flask import Flask, render_template
 import requests
-import urllib3
 import os
-
-urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
-
-GOPHISH_API_KEY = os.environ.get("GOPHISH_API_KEY")
-GOPHISH_URL = "https://127.0.0.1:3333"
 
 app = Flask(__name__)
 
-headers = {
-    "Authorization": GOPHISH_API_KEY
-}
+# ============================================================
+# Environment variables
+# ============================================================
 
-@app.route("/")
-def dashboard():
-    response = requests.get(
-        f"{GOPHISH_URL}/api/campaigns/",
-        headers=headers,
-        verify=False
-    )
+RESULTS_API_URL = os.environ.get("RESULTS_API_URL")
+RESULTS_API_TOKEN = os.environ.get("RESULTS_API_TOKEN")
 
-    campaigns = response.json()
 
+# ============================================================
+# Get campaign statistics from the safe results API
+# ============================================================
+
+def get_campaign_stats():
     stats = {
         "sent": 0,
         "opened": 0,
@@ -31,37 +24,98 @@ def dashboard():
         "submitted": 0
     }
 
-    if campaigns:
-        campaign = campaigns[-1]
+    # If the results API is not configured, return zero values.
+    if not RESULTS_API_URL:
+        return stats
 
-        stats["sent"] = campaign.get("stats", {}).get("sent", 0)
-        stats["opened"] = campaign.get("stats", {}).get("opened", 0)
-        stats["clicked"] = campaign.get("stats", {}).get("clicked", 0)
-        stats["submitted"] = campaign.get("stats", {}).get("submitted_data", 0)
+    try:
+        response = requests.get(
+            RESULTS_API_URL,
+            headers={
+                "Authorization": f"Bearer {RESULTS_API_TOKEN}"
+            },
+            timeout=10
+        )
 
-    return render_template("dashboard.html", stats=stats)
+        response.raise_for_status()
+
+        data = response.json()
+
+        stats["sent"] = data.get("sent", 0)
+        stats["opened"] = data.get("opened", 0)
+        stats["clicked"] = data.get("clicked", 0)
+        stats["submitted"] = data.get("submitted", 0)
+
+    except (requests.RequestException, ValueError, TypeError):
+        # Keep the dashboard available even if the backend
+        # is temporarily unavailable.
+        pass
+
+    return stats
 
 
+# ============================================================
+# Dashboard
+# ============================================================
+
+@app.route("/")
+def dashboard():
+    stats = get_campaign_stats()
+
+    return render_template(
+        "dashboard.html",
+        stats=stats
+    )
+
+
+# ============================================================
+# Campaigns
+# ============================================================
 
 @app.route("/campaigns")
 def campaigns():
     return render_template("campaigns.html")
 
 
+# ============================================================
+# Results
+# ============================================================
+
 @app.route("/results")
 def results():
-    return render_template("results.html")
+    stats = get_campaign_stats()
 
+    return render_template(
+        "results.html",
+        stats=stats
+    )
+
+
+# ============================================================
+# Activity Logs
+# ============================================================
 
 @app.route("/logs")
 def logs():
     return render_template("logs.html")
 
 
+# ============================================================
+# Training
+# ============================================================
+
 @app.route("/training")
 def training():
     return render_template("training.html")
 
 
+# ============================================================
+# Local development
+# ============================================================
+
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000, debug=True)
+    app.run(
+        host="0.0.0.0",
+        port=5000,
+        debug=True
+    )
