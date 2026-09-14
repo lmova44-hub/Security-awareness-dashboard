@@ -81,20 +81,32 @@
 
         <div class="info-card">
             <div class="info-label">Emails Sent</div>
-            <div class="info-value">10</div>
+            <div class="info-value">{{ stats.sent }}</div>
             <div class="info-text">Campaign delivery count</div>
         </div>
 
         <div class="info-card">
             <div class="info-label">Emails Opened</div>
-            <div class="info-value">8</div>
-            <div class="info-text">80% open rate</div>
+            <div class="info-value">{{ stats.opened }}</div>
+            <div class="info-text">
+                {% if stats.sent > 0 %}
+                    {{ ((stats.opened / stats.sent) * 100)|round|int }}% open rate
+                {% else %}
+                    0% open rate
+                {% endif %}
+            </div>
         </div>
 
         <div class="info-card">
             <div class="info-label">Links Clicked</div>
-            <div class="info-value">5</div>
-            <div class="info-text">50% click rate</div>
+            <div class="info-value">{{ stats.clicked }}</div>
+            <div class="info-text">
+                {% if stats.sent > 0 %}
+                    {{ ((stats.clicked / stats.sent) * 100)|round|int }}% click rate
+                {% else %}
+                    0% click rate
+                {% endif %}
+            </div>
         </div>
 
     </section>
@@ -111,11 +123,17 @@
 
             <div class="progress-header">
                 <span>Open Rate</span>
-                <strong>80%</strong>
+                <strong>
+                    {% if stats.sent > 0 %}
+                        {{ ((stats.opened / stats.sent) * 100)|round|int }}%
+                    {% else %}
+                        0%
+                    {% endif %}
+                </strong>
             </div>
 
             <div class="progress-bar">
-                <div class="progress-fill" style="width:80%"></div>
+                <div class="progress-fill" style="width:{% if stats.sent > 0 %}{{ ((stats.opened / stats.sent) * 100)|round|int }}{% else %}0{% endif %}%"></div>
             </div>
 
         </div>
@@ -125,11 +143,17 @@
 
             <div class="progress-header">
                 <span>Click Rate</span>
-                <strong>50%</strong>
+                <strong>
+                    {% if stats.sent > 0 %}
+                        {{ ((stats.clicked / stats.sent) * 100)|round|int }}%
+                    {% else %}
+                        0%
+                    {% endif %}
+                </strong>
             </div>
 
             <div class="progress-bar">
-                <div class="progress-fill" style="width:50%"></div>
+                <div class="progress-fill" style="width:{% if stats.sent > 0 %}{{ ((stats.clicked / stats.sent) * 100)|round|int }}{% else %}0{% endif %}%"></div>
             </div>
 
         </div>
@@ -139,11 +163,17 @@
 
             <div class="progress-header">
                 <span>Form Interaction</span>
-                <strong>0%</strong>
+                <strong>
+                    {% if stats.sent > 0 %}
+                        {{ ((stats.submitted / stats.sent) * 100)|round|int }}%
+                    {% else %}
+                        0%
+                    {% endif %}
+                </strong>
             </div>
 
             <div class="progress-bar">
-                <div class="progress-fill" style="width:0%"></div>
+                <div class="progress-fill" style="width:{% if stats.sent > 0 %}{{ ((stats.submitted / stats.sent) * 100)|round|int }}{% else %}0{% endif %}%"></div>
             </div>
 
         </div>
@@ -173,10 +203,10 @@
 
                 <tr>
                     <td>Security Awareness Campaign 01</td>
-                    <td>Completed</td>
-                    <td>10</td>
-                    <td>8</td>
-                    <td>5</td>
+                    <td>Live</td>
+                    <td>{{ stats.sent }}</td>
+                    <td>{{ stats.opened }}</td>
+                    <td>{{ stats.clicked }}</td>
                 </tr>
 
             </tbody>
