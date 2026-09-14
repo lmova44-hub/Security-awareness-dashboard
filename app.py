@@ -8,12 +8,12 @@ app = Flask(__name__)
 # Environment variables
 # ============================================================
 
-RESULTS_API_URL = os.environ.get("RESULTS_API_URL")
-RESULTS_API_TOKEN = os.environ.get("RESULTS_API_TOKEN")
+GOPHISH_URL = os.environ.get("GOPHISH_URL", "https://127.0.0.1:3333")
+GOPHISH_API_KEY = os.environ.get("GOPHISH_API_KEY")
 
 
 # ============================================================
-# Get campaign statistics from the safe results API
+# Get campaign statistics directly from GoPhish
 # ============================================================
 
 def get_campaign_stats():
@@ -24,30 +24,34 @@ def get_campaign_stats():
         "submitted": 0
     }
 
-    # If the results API is not configured, return zero values.
-    if not RESULTS_API_URL:
+    # If GoPhish is not configured, return zero values.
+    if not GOPHISH_API_KEY:
         return stats
 
     try:
         response = requests.get(
-            RESULTS_API_URL,
+            f"{GOPHISH_URL}/api/campaigns/",
             headers={
-                "Authorization": f"Bearer {RESULTS_API_TOKEN}"
+                "Authorization": GOPHISH_API_KEY
             },
-            timeout=10
+            timeout=10,
+            verify=False
         )
 
         response.raise_for_status()
 
-        data = response.json()
+        campaigns = response.json()
 
-        stats["sent"] = data.get("sent", 0)
-        stats["opened"] = data.get("opened", 0)
-        stats["clicked"] = data.get("clicked", 0)
-        stats["submitted"] = data.get("submitted", 0)
+        # Sum stats across all campaigns
+        for campaign in campaigns:
+            campaign_stats = campaign.get("stats", {})
+            stats["sent"] += campaign_stats.get("sent", 0)
+            stats["opened"] += campaign_stats.get("opened", 0)
+            stats["clicked"] += campaign_stats.get("clicked", 0)
+            stats["submitted"] += campaign_stats.get("submitted_data", 0)
 
     except (requests.RequestException, ValueError, TypeError):
-        # Keep the dashboard available even if the backend
+        # Keep the dashboard available even if GoPhish
         # is temporarily unavailable.
         pass
 
