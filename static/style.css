@@ -1,0 +1,421 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --red: #b91c1c;
+    --red-dark: #991b1b;
+    --red-light: #fee2e2;
+    --black: #181818;
+    --dark: #262626;
+    --gray-900: #404040;
+    --gray-700: #525252;
+    --gray-500: #737373;
+    --gray-300: #d4d4d4;
+    --gray-200: #e5e5e5;
+    --gray-100: #f5f5f5;
+    --white: #ffffff;
+}
+
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: #f3f4f6;
+    color: #171717;
+}
+
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 245px;
+    height: 100vh;
+    background: #181818;
+    color: white;
+    border-right: 1px solid #303030;
+}
+
+.brand {
+    padding: 30px 25px;
+    border-bottom: 1px solid #303030;
+}
+
+.brand-line {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.brand-mark {
+    width: 34px;
+    height: 34px;
+    background: var(--red);
+    color: white;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.brand-name {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.brand-subtitle {
+    margin-top: 5px;
+    margin-left: 46px;
+    color: #888;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.navigation {
+    padding: 25px 14px;
+}
+
+.navigation-title {
+    padding: 0 12px 11px;
+    color: #777;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+}
+
+.navigation a {
+    display: flex;
+    align-items: center;
+    height: 44px;
+    padding: 0 13px;
+    margin-bottom: 4px;
+    color: #bdbdbd;
+    text-decoration: none;
+    font-size: 13px;
+    border-radius: 5px;
+}
+
+.navigation a:hover {
+    background: #292929;
+    color: white;
+}
+
+.navigation a.active {
+    background: #3a2020;
+    color: white;
+    border-left: 3px solid #dc2626;
+    padding-left: 10px;
+}
+
+.nav-number {
+    width: 30px;
+    color: #777;
+    font-size: 10px;
+}
+
+.sidebar-footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 20px 25px;
+    border-top: 1px solid #303030;
+}
+
+.footer-title {
+    color: #ddd;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.footer-text {
+    margin-top: 5px;
+    color: #777;
+    font-size: 10px;
+}
+
+.main {
+    margin-left: 245px;
+    min-height: 100vh;
+    padding: 32px 40px;
+}
+
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 23px;
+    margin-bottom: 25px;
+    border-bottom: 1px solid #dcdcdc;
+}
+
+.page-title {
+    font-size: 26px;
+    font-weight: 600;
+}
+
+.page-description {
+    margin-top: 6px;
+    color: #737373;
+    font-size: 13px;
+}
+
+.status {
+    padding: 8px 13px;
+    background: #ecfdf5;
+    color: #15803d;
+    border: 1px solid #bbf7d0;
+    border-radius: 4px;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.panel {
+    background: white;
+    border: 1px solid #dedede;
+    border-radius: 6px;
+    padding: 23px;
+    margin-bottom: 20px;
+}
+
+.panel-title {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 18px;
+}
+
+.panel-description {
+    color: #737373;
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+.grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+.grid-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+}
+
+.info-card {
+    background: white;
+    border: 1px solid #dedede;
+    border-radius: 6px;
+    padding: 20px;
+    border-top: 3px solid var(--red);
+}
+
+.info-label {
+    color: #737373;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: .8px;
+}
+
+.info-value {
+    margin-top: 9px;
+    font-size: 25px;
+    font-weight: 650;
+}
+
+.info-text {
+    margin-top: 6px;
+    color: #999;
+    font-size: 10px;
+}
+
+.campaign-card {
+    background: white;
+    border: 1px solid #dedede;
+    border-radius: 6px;
+    padding: 21px;
+}
+
+.campaign-card h3 {
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.campaign-card p {
+    color: #737373;
+    font-size: 11px;
+    line-height: 1.6;
+}
+
+.badge {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 5px 9px;
+    border-radius: 4px;
+    background: #ecfdf5;
+    color: #15803d;
+    font-size: 9px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.button {
+    display: inline-block;
+    margin-top: 16px;
+    padding: 9px 14px;
+    border: 1px solid var(--red);
+    border-radius: 4px;
+    color: var(--red-dark);
+    text-decoration: none;
+    font-size: 10px;
+    font-weight: 600;
+}
+
+.button:hover {
+    background: var(--red-dark);
+    color: white;
+}
+
+.progress-row {
+    margin-bottom: 20px;
+}
+
+.progress-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 7px;
+    font-size: 11px;
+}
+
+.progress-bar {
+    height: 7px;
+    background: #eeeeee;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: var(--red);
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table th {
+    text-align: left;
+    padding: 12px;
+    background: #f7f7f7;
+    color: #666;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: .6px;
+}
+
+.table td {
+    padding: 13px 12px;
+    border-bottom: 1px solid #eeeeee;
+    font-size: 11px;
+    color: #444;
+}
+
+.log-item {
+    display: flex;
+    gap: 18px;
+    padding: 15px 0;
+    border-bottom: 1px solid #eeeeee;
+}
+
+.log-item:last-child {
+    border-bottom: none;
+}
+
+.log-time {
+    width: 55px;
+    color: #999;
+    font-size: 10px;
+}
+
+.log-level {
+    width: 55px;
+    color: #15803d;
+    font-size: 9px;
+    font-weight: 700;
+}
+
+.log-message {
+    font-size: 11px;
+    color: #404040;
+}
+
+.training-section {
+    padding: 18px 0;
+    border-bottom: 1px solid #eeeeee;
+}
+
+.training-section:last-child {
+    border-bottom: none;
+}
+
+.training-section h3 {
+    font-size: 13px;
+    margin-bottom: 8px;
+}
+
+.training-section p {
+    color: #737373;
+    font-size: 11px;
+    line-height: 1.7;
+}
+
+.training-section ul {
+    margin-top: 10px;
+    margin-left: 18px;
+}
+
+.training-section li {
+    margin-bottom: 7px;
+    color: #666;
+    font-size: 11px;
+}
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 25px;
+    padding-top: 17px;
+    border-top: 1px solid #dcdcdc;
+    color: #999;
+    font-size: 9px;
+}
+
+@media (max-width: 900px) {
+    .grid-3,
+    .grid-2 {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 700px) {
+    .sidebar {
+        position: relative;
+        width: 100%;
+        height: auto;
+    }
+
+    .main {
+        margin-left: 0;
+        padding: 22px;
+    }
+
+    .topbar {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 15px;
+    }
+}

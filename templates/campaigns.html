@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campaigns | Security Awareness</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<aside class="sidebar">
+
+    <div class="brand">
+        <div class="brand-line">
+            <div class="brand-mark">SA</div>
+            <div class="brand-name">Security Awareness</div>
+        </div>
+        <div class="brand-subtitle">Simulation Platform</div>
+    </div>
+
+    <nav class="navigation">
+
+        <div class="navigation-title">Platform</div>
+
+        <a href="/">
+            <span class="nav-number">01</span>
+            Dashboard
+        </a>
+
+        <a href="/campaigns" class="active">
+            <span class="nav-number">02</span>
+            Campaigns
+        </a>
+
+        <a href="/results">
+            <span class="nav-number">03</span>
+            Results
+        </a>
+
+        <a href="/logs">
+            <span class="nav-number">04</span>
+            Activity Logs
+        </a>
+
+        <a href="/training">
+            <span class="nav-number">05</span>
+            Training
+        </a>
+
+    </nav>
+
+    <div class="sidebar-footer">
+        <div class="footer-title">Security Awareness</div>
+        <div class="footer-text">Controlled simulation environment</div>
+    </div>
+
+</aside>
+
+
+<main class="main">
+
+    <header class="topbar">
+
+        <div>
+            <h1 class="page-title">Campaigns</h1>
+
+            <p class="page-description">
+                Manage and monitor security awareness campaigns.
+            </p>
+        </div>
+
+        <div class="status">
+            Laboratory Environment
+        </div>
+
+    </header>
+
+
+    <div class="panel">
+
+        <div class="panel-title">
+            Security Awareness Campaign 01
+        </div>
+
+        <p class="panel-description">
+            Controlled security awareness simulation designed to
+            evaluate user interaction with simulated phishing messages.
+        </p>
+
+        <a href="/results" class="button">
+            View Campaign Results
+        </a>
+
+    </div>
+
+
+    <section class="grid-3">
+
+        <div class="info-card">
+
+            <div class="info-label">Campaign Status</div>
+
+            <div class="info-value">Active</div>
+
+            <div class="info-text">
+                Monitoring enabled
+            </div>
+
+            <span class="badge">Running</span>
+
+        </div>
+
+
+        <div class="info-card">
+
+            <div class="info-label">Recipients</div>
+
+            <div class="info-value">10</div>
+
+            <div class="info-text">
+                Authorized test users
+            </div>
+
+        </div>
+
+
+        <div class="info-card">
+
+            <div class="info-label">Environment</div>
+
+            <div class="info-value">Lab</div>
+
+            <div class="info-text">
+                Isolated test network
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <footer class="footer">
+        <span>Security Awareness Simulation Platform</span>
+        <span>Controlled Laboratory Environment</span>
+    </footer>
+
+</main>
+
+</body>
+</html>

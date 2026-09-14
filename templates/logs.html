@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activity Logs | Security Awareness</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<aside class="sidebar">
+
+    <div class="brand">
+        <div class="brand-line">
+            <div class="brand-mark">SA</div>
+            <div class="brand-name">Security Awareness</div>
+        </div>
+        <div class="brand-subtitle">Simulation Platform</div>
+    </div>
+
+    <nav class="navigation">
+
+        <div class="navigation-title">Platform</div>
+
+        <a href="/">
+            <span class="nav-number">01</span>
+            Dashboard
+        </a>
+
+        <a href="/campaigns">
+            <span class="nav-number">02</span>
+            Campaigns
+        </a>
+
+        <a href="/results">
+            <span class="nav-number">03</span>
+            Results
+        </a>
+
+        <a href="/logs" class="active">
+            <span class="nav-number">04</span>
+            Activity Logs
+        </a>
+
+        <a href="/training">
+            <span class="nav-number">05</span>
+            Training
+        </a>
+
+    </nav>
+
+    <div class="sidebar-footer">
+        <div class="footer-title">Security Awareness</div>
+        <div class="footer-text">Controlled simulation environment</div>
+    </div>
+
+</aside>
+
+
+<main class="main">
+
+    <header class="topbar">
+
+        <div>
+            <h1 class="page-title">Activity Logs</h1>
+
+            <p class="page-description">
+                Recorded events generated during the awareness campaign.
+            </p>
+        </div>
+
+        <div class="status">
+            Monitoring
+        </div>
+
+    </header>
+
+
+    <div class="panel">
+
+        <div class="panel-title">
+            Campaign Activity
+        </div>
+
+
+        <div class="log-item">
+
+            <div class="log-time">11:42</div>
+
+            <div class="log-level">INFO</div>
+
+            <div class="log-message">
+                Campaign initialized
+            </div>
+
+        </div>
+
+
+        <div class="log-item">
+
+            <div class="log-time">11:43</div>
+
+            <div class="log-level">INFO</div>
+
+            <div class="log-message">
+                Test message delivered
+            </div>
+
+        </div>
+
+
+        <div class="log-item">
+
+            <div class="log-time">11:44</div>
+
+            <div class="log-level">INFO</div>
+
+            <div class="log-message">
+                Message opened
+            </div>
+
+        </div>
+
+
+        <div class="log-item">
+
+            <div class="log-time">11:45</div>
+
+            <div class="log-level">INFO</div>
+
+            <div class="log-message">
+                Simulation link accessed
+            </div>
+
+        </div>
+
+
+        <div class="log-item">
+
+            <div class="log-time">11:46</div>
+
+            <div class="log-level">INFO</div>
+
+            <div class="log-message">
+                Awareness page displayed
+            </div>
+
+        </div>
+
+
+        <div class="log-item">
+
+            <div class="log-time">11:47</div>
+
+            <div class="log-level">INFO</div>
+
+            <div class="log-message">
+                Campaign activity recorded
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <footer class="footer">
+        <span>Security Awareness Simulation Platform</span>
+        <span>Controlled Laboratory Environment</span>
+    </footer>
+
+</main>
+
+</body>
+</html>
