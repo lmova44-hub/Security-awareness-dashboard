@@ -8,8 +8,8 @@ app = Flask(__name__)
 # Environment variables
 # ============================================================
 
-GOPHISH_URL = os.environ.get("GOPHISH_URL", "https://127.0.0.1:3333")
 GOPHISH_API_KEY = os.environ.get("GOPHISH_API_KEY")
+GOPHISH_URL = os.environ.get("GOPHISH_URL", "https://20.230.166.202:3333")
 
 
 # ============================================================
